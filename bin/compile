@@ -33,7 +33,8 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
 cd $BUILD_DIR
 dotnet --info
 
-PROJECT_NAME=$(basename $(dirname $(find ${BUILD_DIR} -maxdepth 5 -iname Startup.cs | head -1)))
+PROJECT_NAME="WebApi"
+### $(basename $(dirname $(find ${BUILD_DIR} -maxdepth 5 -iname Startup.cs | head -1)))
 PROJECT_FILE=$(find ${BUILD_DIR} -maxdepth 5 -iname "${PROJECT_NAME}.csproj" | head -1)
 
 echo "*** project name | ${PROJECT_NAME}"
@@ -47,5 +48,5 @@ echo "cleanup"
 # dotnet_cleanup $BUILD_DIR
 
 cat << EOT >> ${BUILD_DIR}/Procfile
-web: cd \$HOME/heroku_outpu && ASPNETCORE_URLS='http://+:\$PORT' dotnet "./${PROJECT_NAME}.dll" --server.urls http://+:\$PORT
+web: cd \$HOME/heroku_output && ASPNETCORE_URLS='http://+:\$PORT' dotnet "./${PROJECT_NAME}.dll" --server.urls http://+:\$PORT
 EOT
