@@ -40,7 +40,7 @@ echo "publish ${PROJECT_FILE}"
 dotnet publish $PROJECT_FILE --output ${BUILD_DIR}/heroku_output --configuration Release  --runtime linux-x64 --self-contained
 
 echo "cleanup"
-dotnet_cleanup $BUILD_DIR
+# dotnet_cleanup $BUILD_DIR
 
 cat << EOT >> ${BUILD_DIR}/Procfile
 web: cd \$HOME/heroku_output && chmod +x ${PROJECT_NAME} && ASPNETCORE_URLS='http://+:\$PORT' dotnet "./${PROJECT_NAME}.dll" --server.urls http://+:\$PORT
