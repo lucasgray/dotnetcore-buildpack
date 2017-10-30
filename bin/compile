@@ -46,7 +46,3 @@ dotnet publish $PROJECT_FILE --output ${BUILD_DIR}/heroku_output --configuration
 
 echo "cleanup"
 # dotnet_cleanup $BUILD_DIR
-
-cat << EOT >> ${BUILD_DIR}/Procfile
-web: cd heroku_output && ASPNETCORE_URLS='http://+:\$PORT' dotnet WebApi.dll --server.urls http://+:\$PORT
-EOT
